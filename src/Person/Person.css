@@ -1,0 +1,12 @@
+/* This style will injected dynamically by webpack: manages the imports you add
+   Also automoatic prefixing though which is very convenient, we write the shortest css code possible or needed and it will automatically 
+   prefix it to work in as many browsers as possible */
+.Person {
+    width: 60%;
+    margin: 16px auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+
+}
