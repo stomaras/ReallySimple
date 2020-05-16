@@ -38,11 +38,24 @@ class App extends Component {
 
 
   render() {
+    // Styling here is scoped to the component or to the element you actually add it to, but you have some restrictions 
+    // of not being able to leverage the full power of css. You can scope style and still use all the css features.
+    // Inline Style .
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <div>Hi, I'm a React App</div>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Tomaras','22')}>Switch name</button>
+        <button 
+          style={style}
+          onClick={() => this.switchNameHandler('Tomaras','22')}>Switch name</button>
         <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age}/>
