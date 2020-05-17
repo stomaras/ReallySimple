@@ -6,9 +6,9 @@ class App extends Component {
   // if state change will lead react to re-render our dom 
   state = {
     persons: [
-      { name: 'max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Maria', age: 37 }
+      { id: 'asf', name: 'max', age: 28 },
+      { id: 'bsf', name: 'Manu', age: 29 },
+      { id: 'csf', name: 'Maria', age: 37 }
     ],
     otherState: 'Some other value',
     showPersons: false
@@ -36,6 +36,12 @@ class App extends Component {
     } )
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons.slice();
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
+
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow});
@@ -60,17 +66,13 @@ class App extends Component {
     if( this.state.showPersons ) {
       persons = (
         <div>
-          <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age}/>
-          <Person 
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Max!','32')}
-            changed={this.nameChangedHandler}>My Hobbies: Football</Person>
-          <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age}/>
+          {this.state.persons.map((person, index) => {
+            return <Person
+              click={() => this.deletePersonHandler(index)}
+              name = {person.name}
+              age = {person.age}
+              key = {person.id} />
+          })}
         </div>
       );
     }
