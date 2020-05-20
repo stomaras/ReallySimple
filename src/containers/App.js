@@ -7,7 +7,31 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
+
+  // 1st the constructor runs
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
+  // 2nd after the constructor getDerivedStateFromProps runs. For that, 
+  // we add a static keyword because it is a static method
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+
+  }
+  // Now after getDerivedStateFromProps the render method executes
+
+
+  // 5th componentDidMount will execute
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
+  }
+
   // if state change will lead react to re-render our dom 
+  // A new more modern syntax of initialiation o constructor
   state = {
     persons: [
       { id: 'asf', name: 'max', age: 28 },
@@ -60,17 +84,19 @@ class App extends Component {
   }
 
 
-
+  // 3rd the render method executes due to the creation of the component 
   render() {
     // Styling here is scoped to the component or to the element you actually add it to, but you have some restrictions 
     // of not being able to leverage the full power of css. You can scope style and still use all the css features.
     // Inline Style .
     
-
+    console.log('[App.js] render')
     let persons = null;
     
 
     if( this.state.showPersons ) {
+
+      // 4th after the render method all the child components will be rendered.
       persons = <Persons 
             persons = {this.state.persons}
             clicked = {this.deletePersonHandler}
@@ -83,6 +109,7 @@ class App extends Component {
       
         <div className={classes.App}>
             <Cockpit 
+              title={this.props.appTitle}
               showPersons={this.state.showPersons}
               persons={this.state.persons}
               clicked={this.togglePersonsHandler}
