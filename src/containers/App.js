@@ -24,10 +24,22 @@ class App extends Component {
   }
   // Now after getDerivedStateFromProps the render method executes
 
-
+  // Update something from the server
   // 5th componentDidMount will execute
   componentDidMount(){
     console.log('[App.js] componentDidMount');
+  }
+
+  // has to return something
+  // performance improvements
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  // Update something from the server
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
   }
 
   // if state change will lead react to re-render our dom 

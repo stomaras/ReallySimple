@@ -25,6 +25,8 @@ class Persons extends Component {
         }
 
         // Will run once we are done with all the updating.
+        // Most important takeaway , the hook you will use by far most often will be componentDidUpdate which is 
+        // after the update finished when you for example need to fetch new data from a server 
         componentDidUpdate(prevProps, prevState, snapshot) {
           console.log('[Persons.js] componentDidUpdate');
           console.log(snapshot);
